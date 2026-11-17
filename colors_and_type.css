@@ -1,0 +1,502 @@
+/* =============================================================
+   PASCAL LEONG — Dual System (Dark + Light)
+   ───────────────────────────────────────────────
+   Dark System  → funnels, Tally forms, Linktree, high-speed conversion
+   Light System → Notion, Kit, newsletters, deep-work reading
+
+   Switch with: <html data-theme="dark"> or <html data-theme="light">
+   Default is dark.
+
+   Load in your HTML <head>:
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+   Icons:
+     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+     Then use <i class="ph-thin ph-compass"></i> etc.
+   ============================================================= */
+
+:root,
+[data-theme="dark"] {
+  /* ─── DARK SYSTEM — primary brand tokens ─── */
+  --color-midnight-slate: #020817;
+  --color-crisp-frost:    #F1F5F9;
+  --color-electric-mint:  #2DD4BF;
+  --color-luminous-mint:  #5EEAD4;
+
+  /* slate scale */
+  --slate-950: #020817;
+  --slate-900: #0A1325;
+  --slate-800: #0F1A30;
+  --slate-700: #1B2942;
+  --slate-600: #2C3E5C;
+  --slate-500: #5B6B85;
+  --slate-400: #8A9BB5;
+  --slate-300: #B8C3D6;
+  --slate-200: #DDE3EE;
+  --slate-100: #F1F5F9;
+
+  /* mint scale */
+  --mint-800: #0F766E;
+  --mint-700: #0D9488;
+  --mint-600: #14B8A6;
+  --mint-500: #2DD4BF;
+  --mint-400: #5EEAD4;
+  --mint-300: #99F6E4;
+
+  /* semantic surface / text */
+  --bg:           #020817;
+  --bg-canvas:    #020817;
+  --bg-elevated:  #0A1325;
+  --bg-card:      #0F1A30;
+  --bg-input:     rgba(241, 245, 249, 0.04);
+  --bg-input-hover: rgba(241, 245, 249, 0.07);
+
+  --fg:           #F1F5F9;
+  --fg-muted:     #8A9BB5;
+  --fg-subtle:    #5B6B85;
+  --fg-inverse:   #020817;
+
+  --border:        #1B2942;
+  --border-strong: #2C3E5C;
+  --border-focus:  #5EEAD4;
+  --divider:       rgba(94, 234, 212, 0.10);
+
+  --accent:        #2DD4BF;
+  --accent-hover:  #14B8A6;
+  --accent-press:  #0D9488;
+  --accent-soft:   rgba(45, 212, 191, 0.10);
+  --accent-on:     #020817;          /* text on accent fill */
+  --link:          #5EEAD4;
+
+  /* constant alpha colours (same value in both themes) */
+  --slate-950-a00: rgba(2, 8, 23, 0);
+  --slate-950-a40: rgba(2, 8, 23, 0.4);
+  --slate-950-a55: rgba(2, 8, 23, 0.55);
+  --slate-950-a62: rgba(2, 8, 23, 0.62);
+  --slate-950-a70: rgba(2, 8, 23, 0.7);
+  --slate-950-a85: rgba(2, 8, 23, 0.85);
+  --slate-950-a95: rgba(2, 8, 23, 0.95);
+  --slate-900-a92: rgba(10, 19, 37, 0.92);
+  --mint-500-a10: rgba(45, 212, 191, 0.10);
+  --mint-500-a28: rgba(45, 212, 191, 0.28);
+  --gray-50-a50: rgba(248, 250, 252, 0.5);
+  --gray-50-a85: rgba(248, 250, 252, 0.85);
+  --black-a50: rgba(0, 0, 0, 0.5);
+
+  /* shadows — calibrated for dark surface */
+  --shadow-xs: 0 1px 0 rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.6);
+
+  /* Calibrated glow — tight 1px hairline + diffuse halo */
+  --glow-mint:     0 0 0 1px var(--mint-400), 0 0 24px rgba(45, 212, 191, 0.35);
+  --glow-mint-lg:  0 0 0 1px var(--mint-400), 0 0 32px rgba(45, 212, 191, 0.45), 0 16px 48px rgba(45, 212, 191, 0.18);
+  --glow-mint-soft:0 0 24px rgba(45, 212, 191, 0.25);
+  --ring-focus:    0 0 0 2px rgba(94, 234, 212, 0.55);
+
+  /* grid backdrop */
+  --grid-color:    rgba(94, 234, 212, 0.05);
+
+  /* Severity pair — exception to the one-accent rule. Two-tier risk/warning
+     data only (e.g. a chart comparing a worse stat to a less-bad stat).
+     Never for brand, CTAs, or general emphasis — those stay mint/teal. */
+  --severity-caution:      #F59E0B; /* tier 1 — lower severity */
+  --severity-serious:      #EF4444; /* tier 2 — higher severity, the more alarming stat */
+  --severity-caution-glow: 0 0 20px rgba(245, 158, 11, 0.5);
+  --severity-serious-glow: 0 0 24px rgba(239, 68, 68, 0.55);
+}
+
+[data-theme="light"] {
+  /* ─── LIGHT SYSTEM — Notion / Kit / deep-work reading ─── */
+  --color-light-grey: #F8FAFC;
+  --color-pure-white: #FFFFFF;
+  --color-soft-black: #111111;
+  --color-deep-teal:  #0F766E;
+
+  /* teal scale */
+  --teal-900: #064E3B;
+  --teal-800: #0F766E;
+  --teal-700: #0F8A7E;
+  --teal-600: #14B8A6;
+  --teal-500: #2DD4BF;
+  --teal-100: #CCFBF1;
+  --teal-50:  #F0FDFA;
+
+  /* neutral scale on light */
+  --gray-950: #111111;
+  --gray-900: #1E1E1E;
+  --gray-700: #4A4A4A;
+  --gray-500: #888888;
+  --gray-300: #D4D4D4;
+  --gray-200: #E5E7EB;
+  --gray-100: #F1F3F5;
+  --gray-50:  #F8FAFC;
+
+  --bg:           #F8FAFC;
+  --bg-canvas:    #F8FAFC;
+  --bg-elevated:  #FFFFFF;
+  --bg-card:      #FFFFFF;
+  --bg-input:     #FFFFFF;
+  --bg-input-hover: #F1F3F5;
+
+  --fg:           #111111;
+  --fg-muted:     #4A4A4A;
+  --fg-subtle:    #888888;
+  --fg-inverse:   #FFFFFF;
+
+  --border:        #E5E7EB;
+  --border-strong: #D4D4D4;
+  --border-focus:  #0F766E;
+  --divider:       rgba(17, 17, 17, 0.06);
+
+  --accent:        #0F766E;
+  --accent-hover:  #0F8A7E;
+  --accent-press:  #064E3B;
+  --accent-soft:   rgba(15, 118, 110, 0.08);
+  --accent-on:     #FFFFFF;
+  --link:          #0F766E;
+
+  /* Light-mode shadows — subtle, no glow */
+  --shadow-xs: 0 1px 0 rgba(17, 17, 17, 0.05);
+  --shadow-sm: 0 1px 2px rgba(17, 17, 17, 0.06), 0 1px 3px rgba(17, 17, 17, 0.04);
+  --shadow-md: 0 4px 12px rgba(17, 17, 17, 0.08), 0 2px 4px rgba(17, 17, 17, 0.04);
+  --shadow-lg: 0 12px 32px rgba(17, 17, 17, 0.10), 0 4px 8px rgba(17, 17, 17, 0.04);
+
+  /* Light system uses NO glow — too soft for the reading context.
+     Hover states use deeper shadow + slight color shift. */
+  --glow-mint:     0 0 0 1px var(--teal-800);
+  --glow-mint-lg:  0 0 0 1px var(--teal-800), 0 12px 32px rgba(15, 118, 110, 0.18);
+  --glow-mint-soft:0 0 0 1px rgba(15, 118, 110, 0.20);
+  --ring-focus:    0 0 0 2px rgba(15, 118, 110, 0.30);
+
+  --grid-color:    rgba(17, 17, 17, 0.04);
+
+  /* Severity pair — deeper shades for AA contrast on light bg. No glow. */
+  --severity-caution: #B45309;
+  --severity-serious: #B91C1C;
+}
+
+/* =============================================================
+   TYPOGRAPHY
+   Inter is the entire system. Inter Black (900) for display,
+   Medium/Regular for body, with tight tracking for sharpness.
+   ============================================================= */
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"), local("Inter-Regular");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: local("Inter-Medium");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: local("Inter-SemiBold");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: local("Inter-Bold");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: local("Inter-ExtraBold");
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: local("Inter-Black");
+  font-weight: 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: local("JetBrains Mono"), local("JetBrainsMono-Regular");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: local("JetBrains Mono Medium"), local("JetBrainsMono-Medium");
+  font-weight: 500;
+  font-display: swap;
+}
+
+:root {
+  --font-display: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body:    "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Type scale */
+  --fs-display-2xl: 88px;
+  --fs-display-xl:  72px;
+  --fs-display-lg:  56px;
+  --fs-h1:          44px;
+  --fs-h2:          32px;
+  --fs-h3:          24px;
+  --fs-h4:          20px;
+  --fs-lg:          18px;
+  --fs-base:        16px;
+  --fs-sm:          14px;
+  --fs-xs:          12px;
+  --fs-eyebrow:     11px;
+
+  --lh-tight:    1.0;     /* @kind other */
+  --lh-display:  1.04;    /* @kind other */
+  --lh-heading:  1.15;    /* @kind other */
+  --lh-body:     1.55;    /* @kind other */
+
+  --ls-display:  -0.04em;   /* tight, sharp — @kind other */
+  --ls-heading:  -0.02em;   /* @kind other */
+  --ls-normal:   -0.005em;  /* @kind other */
+  --ls-wordmark: 0.15em;    /* wordmark wide tracking — Canva letter-spacing 150 — @kind other */
+  --ls-eyebrow:  0.18em;    /* eyebrow / label uppercase — @kind other */
+
+  --fw-regular:  400;   /* @kind font */
+  --fw-medium:   500;   /* @kind font */
+  --fw-semibold: 600;   /* @kind font */
+  --fw-bold:     700;   /* @kind font */
+  --fw-extra:    800;   /* @kind font */
+  --fw-black:    900;   /* @kind font */
+
+  /* Spacing — 4pt baseline */
+  --space-1: 4px;  --space-2: 8px;   --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px;  --space-8: 32px; --space-10: 40px;
+  --space-12: 48px; --space-16: 64px; --space-20: 80px; --space-24: 96px;
+  --space-32: 128px; --space-40: 160px;
+
+  /* Radii — sharper. 6px is the new default. */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-pill: 9999px;
+
+  /* Motion — faster, sharper */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);  /* @kind other */
+  --ease-snap:   cubic-bezier(0.2, 0, 0, 1);    /* @kind other */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --dur-fast:    100ms;                           /* @kind other */
+  --dur-base:    180ms;                           /* @kind other */
+  --dur-slow:    320ms;                           /* @kind other */
+
+  /* Layout */
+  --container-sm: 640px;  /* @kind spacing */
+  --container-md: 768px;  /* @kind spacing */
+  --container-lg: 1024px; /* @kind spacing */
+  --container-xl: 1200px; /* @kind spacing */
+}
+
+/* =============================================================
+   BASE
+   ============================================================= */
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";  /* Inter — clean digits, alt single-storey g */
+}
+
+* { box-sizing: border-box; }
+
+h1, h2, h3, h4 { margin: 0; color: var(--fg); font-family: var(--font-display); }
+
+.display-2xl { font-size: var(--fs-display-2xl); font-weight: var(--fw-black); line-height: var(--lh-display); letter-spacing: var(--ls-display); }
+.display-xl  { font-size: var(--fs-display-xl);  font-weight: var(--fw-black); line-height: var(--lh-display); letter-spacing: var(--ls-display); }
+.display-lg  { font-size: var(--fs-display-lg);  font-weight: var(--fw-extra); line-height: var(--lh-display); letter-spacing: var(--ls-display); }
+
+h1, .h1 { font-size: var(--fs-h1); font-weight: var(--fw-extra); line-height: var(--lh-heading); letter-spacing: var(--ls-heading); }
+h2, .h2 { font-size: var(--fs-h2); font-weight: var(--fw-bold);  line-height: var(--lh-heading); letter-spacing: var(--ls-heading); }
+h3, .h3 { font-size: var(--fs-h3); font-weight: var(--fw-semibold); line-height: var(--lh-heading); letter-spacing: var(--ls-normal); }
+h4, .h4 { font-size: var(--fs-h4); font-weight: var(--fw-semibold); line-height: var(--lh-heading); }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-eyebrow);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.eyebrow::before {
+  content: "";
+  width: 24px; height: 1px;
+  background: currentColor;
+  display: inline-block;
+}
+
+p, .body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--fg);
+}
+.body-lg { font-size: var(--fs-lg); }
+.body-sm { font-size: var(--fs-sm); color: var(--fg-muted); }
+.body-xs { font-size: var(--fs-xs); color: var(--fg-subtle); }
+
+.lede {
+  font-size: var(--fs-lg);
+  line-height: 1.6;
+  color: var(--fg-muted);
+  max-width: 60ch;
+  font-weight: 400;
+}
+
+/* Wordmark style — when recreating, use this. Otherwise prefer the PNG asset. */
+.wordmark {
+  font-family: var(--font-display); /* Inter */
+  font-weight: 700;                 /* Bold — matches Canva wordmark */
+  letter-spacing: var(--ls-wordmark);
+  text-transform: uppercase;
+}
+
+a, .link {
+  color: var(--link);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--dur-base) var(--ease-snap), color var(--dur-fast) var(--ease-snap);
+}
+a:hover, .link:hover { background-size: 100% 1px; }
+
+code, kbd, samp, pre, .mono { font-family: var(--font-mono); font-size: 0.92em; }
+code { background: var(--accent-soft); color: var(--accent); padding: 2px 6px; border-radius: var(--radius-xs); }
+
+::selection { background: var(--accent); color: var(--accent-on); }
+
+:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+
+/* =============================================================
+   UTILITY — grid backdrop, corner brackets
+   ============================================================= */
+.grid-bg {
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.dot-bg {
+  background-image: radial-gradient(var(--grid-color) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Corner bracket marks — pure CSS, sci-fi/architectural feel */
+.brackets { position: relative; }
+.brackets::before, .brackets::after,
+.brackets > .br-tl, .brackets > .br-tr,
+.brackets > .br-bl, .brackets > .br-br { display: none; } /* reset */
+.brk { position: absolute; width: 14px; height: 14px; border: 1px solid var(--accent); pointer-events: none; }
+.brk-tl { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+.brk-tr { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
+.brk-bl { bottom: -1px; left: -1px; border-right: 0; border-top: 0; }
+.brk-br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+/* =============================================================
+   MOTION — reveal-on-mount + utility animations
+   ============================================================= */
+@keyframes pl-fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pl-slow-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes pl-pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.45); }
+  100% { box-shadow: 0 0 0 14px rgba(45, 212, 191, 0); }
+}
+@keyframes pl-shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+.reveal { animation: pl-fade-in var(--dur-slow) var(--ease-out) both; }
+.reveal-1 { animation-delay: 50ms; }
+.reveal-2 { animation-delay: 130ms; }
+.reveal-3 { animation-delay: 230ms; }
+.reveal-4 { animation-delay: 340ms; }
+.reveal-5 { animation-delay: 460ms; }
+.spin-slow { animation: pl-slow-spin 24s linear infinite; }
+.pulse-ring { animation: pl-pulse-ring 2.2s var(--ease-out) infinite; }
+
+/* =============================================================
+   SCROLL REVEAL — fade-up, driven by IntersectionObserver
+   (add .is-visible when the element enters the viewport)
+   ============================================================= */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.fade-up.is-visible { opacity: 1; transform: none; }
+
+/* =============================================================
+   MARQUEE — auto-scrolling gallery track
+   ============================================================= */
+@keyframes pl-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: pl-marquee var(--marquee-dur, 48s) linear infinite;
+}
+.marquee-track.is-dragging,
+.marquee-paused .marquee-track { animation-play-state: paused; }
+
+/* =============================================================
+   CHOSEN-ONE GLOW — the signature mint highlight
+   The brand's core visual device: one element glows, the rest recede.
+   ============================================================= */
+.chosen-glow {
+  box-shadow:
+    0 0 0 1px rgba(45, 212, 191, 0.55),
+    0 0 28px rgba(45, 212, 191, 0.45),
+    0 0 80px rgba(45, 212, 191, 0.30);
+}
+.text-glow {
+  text-shadow:
+    0 0 18px rgba(45, 212, 191, 0.55),
+    0 0 48px rgba(45, 212, 191, 0.30);
+}
+.icon-glow { filter: drop-shadow(0 0 14px rgba(45, 212, 191, 0.40)); }
+
+[data-theme="light"] .chosen-glow {
+  box-shadow:
+    0 0 0 1px rgba(15, 118, 110, 0.30),
+    0 12px 40px rgba(15, 118, 110, 0.18);
+}
+[data-theme="light"] .text-glow { text-shadow: none; }
+[data-theme="light"] .icon-glow { filter: none; }
+
+/* Accessibility — respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { opacity: 1; transform: none; transition: none; }
+  .marquee-track { animation: none; }
+  .spin-slow, .pulse-ring { animation: none; }
+}

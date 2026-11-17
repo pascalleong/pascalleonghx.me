@@ -1,0 +1,303 @@
+<!doctype html>
+<!-- @dsCard group="UI Kit — Personal Brand" name="Personal brand site — UI kit" subtitle="Hero, intake form, Linktree hub — click-thru prototype" viewport="1320x900" -->
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>Pascal Leong | Building the Top 1% of Undergrads</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  html, body { margin: 0; padding: 0; min-height: 100vh; scroll-behavior: smooth; }
+  #app { min-height: 100vh; display: flex; flex-direction: column; }
+  #app > main { flex: 1; }
+  [data-theme="light"] body { background: var(--bg-canvas); }
+
+  /* Hero "chosen one" — cinematic motion */
+  @keyframes pl-rise-float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(-12px); }
+  }
+  @keyframes pl-beam-breathe {
+    0%, 100% { opacity: 0.42; }
+    50%      { opacity: 0.82; }
+  }
+  @keyframes pl-ground-ring {
+    0%   { transform: translateX(-50%) scale(0.35); opacity: 0.55; }
+    100% { transform: translateX(-50%) scale(1.7);  opacity: 0; }
+  }
+  @keyframes pl-halo-breathe {
+    0%, 100% { opacity: 0.40; transform: translate(-50%, -50%) scale(1); }
+    50%      { opacity: 0.85; transform: translate(-50%, -50%) scale(1.1); }
+  }
+  /* Hero 3D render — slow cinematic push-in so the still feels alive */
+  @keyframes pl-hero-zoom {
+    0%, 100% { transform: scale(1.02); }
+    50%      { transform: scale(1.07); }
+  }
+  @media (max-width: 767px) {
+    html, body { overflow-x: clip; }
+    [style*="grid-template-columns"] { grid-template-columns: minmax(0, 1fr) !important; }
+    main section { padding-left: 20px !important; padding-right: 20px !important; }
+    main button, main a[href] { min-height: 44px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pl-rise-float, .pl-beam, .pl-ground-ring, .pl-halo, .pl-hero-zoom { animation: none !important; }
+  }
+
+  /* MOBILE CONTRACT */
+  /* Every current and future component inherits these. A component opts out of the grid collapse with data-mobile-layout. */
+  html, body { overflow-x: clip; }
+  img, picture, video { max-width: 100%; height: auto; }
+  main section[style*="padding: 120px"] { padding-top: clamp(64px, 10vw, 120px) !important; }
+  @media (max-width: 767px) {
+    body { font-size: 16px; }
+    main :is(p, li, blockquote, dd, figcaption):is([style*="font-size: 12"], [style*="font-size: 13"], [style*="font-size: 14"], [style*="font-size: 15"]) { font-size: 16px !important; }
+    main h1:not([style*="clamp"]) { font-size: clamp(32px, 8.5vw, 44px) !important; }
+    main h2:not([style*="clamp"]) { font-size: clamp(26px, 7vw, 36px) !important; }
+    main h3:not([style*="clamp"]) { font-size: clamp(18px, 4.8vw, 22px) !important; }
+    a[href], main a, button, [role="button"], select, summary, input:not([type="range"]):not([type="checkbox"]):not([type="radio"]) { min-height: 44px; }
+    body.pl-has-sticky #app { padding-bottom: calc(var(--pl-sticky-h, 90px) + 16px); }
+  }
+  @media (max-width: 639px) {
+    [style*="grid-template-columns: repeat(3"]:not([data-mobile-layout]), [style*="grid-template-columns: repeat(4"]:not([data-mobile-layout]), [style*="grid-template-columns: repeat(5"]:not([data-mobile-layout]), [style*="grid-template-columns: repeat(6"]:not([data-mobile-layout]) { grid-template-columns: minmax(0, 1fr) !important; }
+  }
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is everything here really free?","acceptedAnswer":{"@type":"Answer","text":"Yes, and it stays free. I built The Unit Navigator over 3 years at Monash because nobody handed me one. If a 1-on-1 or a live cohort isn't possible for you right now, you are not locked out. The same system I run is free in 4 places: The Unit Navigator, my Tuesday newsletter on Substack, my socials (e.g., YouTube, Instagram), and the Library (top menu, under Free), with my Dictionary, prompts and every past issue. Money should never be the reason you graduate without a plan. You need time, agency and determination. When you want more than the free system, there are 2 ways to work with me. The 28-Day Career Moat Sprint is the live cohort: 4 weeks building your Career Moat with me and other students on the same path. The Architect's Table is the done-for-you 1-on-1: I run the audits, build the plan and set up the systems with you and for you, personalized to your degree, so all you do is execute."}},{"@type":"Question","name":"Will this work at my university, in my country?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every university sells you the same bundle at one price: The 4 Hidden Assets. The 4 Hidden Assets are the 4 separable assets bundled into every degree at a single price: Credential, Knowledge, Status, and Infrastructure. Only the fees, the units and the job market change by country. That is why the method travels. The Unit Navigator doesn't hand you a verdict from a template. It walks you through pricing your own syllabus in ₹, RM or $, and checking it against live job ads in your own city. The inputs are yours, so the decision fits your university. I built it at Monash in Malaysia, and the same logic holds in Mumbai, Bengaluru, New York, California, London, Melbourne or Toronto. Wherever you study, the real question is whether you're running Degree Arbitrage: extracting all 4 Hidden Assets for Asymmetric ROI, and turning them into something the market will pay for. That market includes employers, clients, and a business of your own."}},{"@type":"Question","name":"Do I need to be technical or good with AI?","acceptedAnswer":{"@type":"Answer","text":"No. If you've used ChatGPT or any AI chatbot at a basic level, you're ready. Every free resource comes with the exact prompts and step-by-step templates. In The Architect's Table, my 8-week 1-on-1, I go further: I set up my full toolkit around your degree and walk you through it live. That covers the Degree Arbitrage and Career Moat audits with scorecards, The 3/10/50 Filter, my AI workflows, a second brain, and the mental models I use to make decisions. You learn each one by using it on your own units, with me checking your work."}},{"@type":"Question","name":"I already have high grades (GPA, CGPA or %). Why would I need this?","acceptedAnswer":{"@type":"Answer","text":"Keep the grades. Then ask yourself 3 questions. Is there a straight line from your grades to the job you want: the pay, the work you'd actually do, the company and the city? If there is, how much of the hiring decision do grades decide, in this era and in your country? In the US, only 42% of employers plan to screen graduates by GPA in 2026, down from 73% in 2019 (NACE Job Outlook 2026). And what decides the rest? For most roles, the rest is your major, your internships and proof of what you can do. That rest is what I call your Career Moat. A Career Moat is your un-replicable advantage: The intersection of 3 variables neither AI nor another graduate can copy, Asymmetric Capability, Calibrated Judgment, and Relational Equity. A 4th element, Scalable Architecture, multiplies a moat that already exists but does not create one. In plain words: can you do the rare thing, do you point it at the right thing, do people trust you to do it, and does it work when you're not in the room? A transcript shows none of these 4."}}]}</script>
+<link rel="canonical" href="https://pascalleonghx.me/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Pascal Leong","jobTitle":"Strategic Architect","url":"https://pascalleonghx.me","sameAs":["https://www.instagram.com/pascalleonghx","https://www.youtube.com/@pascalleonghx","https://pascalleonghx.substack.com"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Pascal Leong","url":"https://pascalleonghx.me"}</script>
+</head>
+<body>
+<div id="app"></div>
+
+<script>window.plTrack=function(n,p){try{if(window.gtag)window.gtag("event",n,p||{})}catch(e){}};</script>
+<script type="text/babel" src="Interactions.jsx"></script>
+<script type="text/babel" src="Primitives.jsx"></script>
+<script type="text/babel" src="Header.jsx"></script>
+<script type="text/babel" src="Doors.jsx"></script>
+<script type="text/babel" src="Problem.jsx"></script>
+<script type="text/babel" src="HomeParts.jsx"></script>
+<script type="text/babel" src="Hero.jsx"></script>
+<script type="text/babel" src="Sections.jsx"></script>
+<script type="text/babel" src="Extras.jsx"></script>
+<script type="text/babel" src="Testimonials.jsx"></script>
+<script type="text/babel" src="Newsletter.jsx"></script>
+<script type="text/babel" src="WhereYourWeekGoes.jsx"></script>
+<script type="text/babel" src="Claim.jsx"></script>
+<script type="text/babel" src="Hub.jsx"></script>
+<script type="text/babel" src="EssayContent.jsx"></script>
+<script type="text/babel" src="EssayNew.jsx"></script>
+<script type="text/babel" src="Glossary.jsx"></script>
+<script type="text/babel" src="MarkdownReader.jsx"></script>
+<script type="text/babel" src="Library.jsx"></script>
+<script type="text/babel" src="LibrarySpaces.jsx"></script>
+<script type="text/babel" src="KitLanding.jsx"></script>
+<script src="ilo-data.js"></script>
+<script type="text/babel" src="ToolKit.jsx"></script>
+<script type="text/babel" src="ClockTool.jsx"></script>
+<script type="text/babel" src="ScorecardTool.jsx"></script>
+<script type="text/babel" src="DegreeTool.jsx"></script>
+<script type="text/babel" src="Tools.jsx"></script>
+<script type="text/babel" src="Masterplan.jsx"></script>
+<script type="text/babel" src="Mechanism.jsx"></script>
+<script type="text/babel" src="About.jsx"></script>
+<script type="text/babel" src="Table.jsx"></script>
+<script type="text/babel" src="Sprint.jsx"></script>
+
+<script type="text/babel">
+  const toHeroForm = () => {
+    const el = document.getElementById('hero-form');
+    if (!el) return;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 140, behavior: 'smooth' });
+    const i = el.querySelector('input'); if (i) setTimeout(() => i.focus({ preventScroll: true }), 500);
+  };
+  const Landing = ({ onNav }) => (
+    <>
+      <PLHero />
+      <HomeObjections />
+      <ProblemSection />
+      <MechanismSection />
+      <WorkWithMe onNav={onNav} />
+      <About onMore={() => onNav('about')} />
+      <FAQ />
+      <HomeClosing />
+    </>
+  );
+  (function () {
+    const L = window.PL_LINKS || {};
+    const id = L.ga4Id;
+    if (id && id !== 'G-XXXXXXXXXX') {
+      const s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id; document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date()); window.gtag('config', id);
+    }
+    const cid = L.clarityId;
+    if (cid && cid !== 'CLARITY_ID_HERE') {
+      (function (c, l, a, r, i, t, y) { c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); }; t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i; y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y); })(window, document, 'clarity', 'script', cid);
+    }
+
+    const slug = (t) => (t || '').toLowerCase().replace(/[^a-z0-9\s-]/g, ' ').trim().split(/\s+/).slice(0, 3).join('-');
+    const sectionOf = (el) => {
+      const tagged = el.closest('[data-section]'); if (tagged) return tagged.getAttribute('data-section');
+      if (el.closest('[data-sticky-cta]')) return 'sticky';
+      if (el.closest('header')) return 'header';
+      if (el.closest('footer')) return 'footer';
+      const sec = el.closest('section');
+      if (!sec) return 'page';
+      if (sec.id) return sec.id;
+      if (sec.querySelector('h1')) return 'hero';
+      const eb = sec.querySelector('[data-eyebrow]'); if (eb && slug(eb.textContent)) return slug(eb.textContent);
+      const h = sec.querySelector('h2,h3'); if (h && slug(h.textContent)) return slug(h.textContent);
+      return 'section-' + (Array.prototype.indexOf.call(document.querySelectorAll('main section'), sec) + 1);
+    };
+    window.plLoc = (el) => (window.PL_ROUTE || 'home') + '-' + (el ? sectionOf(el) : 'page');
+    const withSrc = (a) => {
+      try { const u = new URL(a.getAttribute('href'), location.href); u.searchParams.set('src', window.plLoc(a)); a.setAttribute('href', u.toString()); } catch (e) {}
+    };
+    const tagTally = () => document.querySelectorAll('#app a[href*="tally.so"]').forEach(withSrc);
+    const withUtm = (a) => {
+      try { const u = new URL(a.getAttribute('href'), location.href); if (!/substack\.com$/.test(u.host)) return; u.searchParams.set('utm_source', 'pascalleonghx.me'); u.searchParams.set('utm_medium', 'website'); u.searchParams.set('utm_campaign', window.plLoc(a)); a.setAttribute('href', u.toString()); } catch (e) {}
+    };
+    const tagSubstack = () => document.querySelectorAll('a[href*="substack.com"]').forEach(withUtm);
+    window.plTagTally = tagTally;
+    new MutationObserver(() => { clearTimeout(window.__plTallyT); window.__plTallyT = setTimeout(() => { tagTally(); tagSubstack(); }, 50); }).observe(document.getElementById('app'), { childList: true, subtree: true });
+
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest && e.target.closest('a,button'); if (!el) return;
+      if (el.closest('[data-no-track]') || el.hasAttribute('aria-expanded')) return;
+      const label = ((el.getAttribute('aria-label') || el.textContent || '').trim().replace(/\s+/g, ' ')).slice(0, 80);
+      const p = { location: window.plLoc(el), label };
+      const href = el.getAttribute('href') || '';
+      if (/tally\.so/.test(href)) { withSrc(el); window.plTrack('apply_click', p); return; }
+      if (/^Apply\b/.test(label)) { window.plTrack('apply_click', p); return; }
+      if (/substack\.com/.test(href)) { withUtm(el); window.plTrack('substack_click', p); return; }
+      if (/^https?:/.test(href)) {
+        let host = ''; try { host = new URL(href).host; } catch (_) {}
+        if (host && host !== location.host) { window.plTrack('outbound_click', { ...p, host }); return; }
+      }
+      if (el.closest('header') || el.closest('footer')) { window.plTrack('nav_click', p); return; }
+      if (el.type === 'submit') return;
+      if (el.closest('[data-calc]')) { window.plTrack('calculator_cta_click', p); return; }
+      if (el.hasAttribute('data-cta') || el.tagName === 'A') window.plTrack('cta_click', p);
+    }, true);
+  })();
+
+  const ROUTE_META = {
+    home: ['Pascal Leong | Building the Top 1% of Undergrads', 'Free Unit Navigator: price every class hour of your degree and get a take, audit or skip call on every unit before you enroll.'],
+    about: ['About Pascal Leong | Strategic Architect', 'Monash graduate in Finance and Digital Marketing. Why Pascal built Degree Arbitrage and the Career Moat, and his record.'],
+    table: ["The Architect's Table | 1-on-1 With Pascal Leong", '8 weeks of 1-on-1 work on your own degree, then 90 days of follow-up. Founding round open: 80% off, 3 seats per round.'],
+    sprint: ['The 28-Day Career Moat Sprint | Pascal Leong', 'The live cohort: 4 weeks building your Career Moat with Pascal and students on the same path. Join the waitlist.'],
+    tools: ['Free Career Tools | Pascal Leong', 'Free calculators and diagnostics for your degree: the AI Displacement Clock and the Career Moat Scorecard.'],
+    navigator: ['The Unit Navigator (Free) | Pascal Leong', 'The 3-Phase Syllabus Audit in one free Notion page. Price every class hour and decide which units to take, audit or skip.'],
+    library: ['The Library: Dictionary, Prompts, Insights | Pascal Leong', 'Every term, prompt and Tuesday issue for getting full value from your degree. Free.'],
+    kit: ['The Tuesday Issue | Pascal Leong', 'One short issue every Tuesday: 3 education and AI insights, 2 mental models, 1 execution framework.'],
+    hub: ['Pascal Leong | Links', 'Every free tool, the newsletter and the ways to work with Pascal Leong, in one place.'],
+  };
+  const setMeta = (r) => {
+    const m = ROUTE_META[r] || ROUTE_META.home;
+    document.title = m[0];
+    let d = document.querySelector('meta[name="description"]'); if (!d) { d = document.createElement('meta'); d.name = 'description'; document.head.appendChild(d); } d.content = m[1];
+    const c = document.querySelector('link[rel="canonical"]'); if (c) c.href = 'https://pascalleonghx.me/' + (r === 'home' ? '' : '#/' + r);
+  };
+  const ROUTES = ['home', 'about', 'table', 'sprint', 'tools', 'navigator', 'library', 'kit', 'hub'];
+  const ROUTE_THEME = { home: 'dark', about: 'dark', table: 'dark', sprint: 'dark', tools: 'dark', navigator: 'dark', hub: 'dark', library: 'light', kit: 'light' };
+  const THEME_KEY = 'pl-theme', SCROLL_KEY = 'pl-scroll';
+  const readHash = () => { const m = /^#\/([a-z]+)/.exec(location.hash || ''); return m ? (ROUTES.includes(m[1]) ? m[1] : 'home') : null; };
+  const readSaved = () => { try { const v = localStorage.getItem(THEME_KEY); return v === 'light' || v === 'dark' ? v : null; } catch (e) { return null; } };
+  const routeTheme = (r) => ROUTE_THEME[r] || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  const scrollPos = (() => { try { return JSON.parse(sessionStorage.getItem(SCROLL_KEY) || '{}') || {}; } catch (e) { return {}; } })();
+  const saveScroll = () => { try { sessionStorage.setItem(SCROLL_KEY, JSON.stringify(scrollPos)); } catch (e) {} };
+  try { history.scrollRestoration = 'manual'; } catch (e) {}
+  const instant = (y) => window.scrollTo({ top: y, left: 0, behavior: 'instant' });
+
+  const App = () => {
+    const [route, setRoute] = React.useState(() => readHash() || 'home');
+    const [tool, setTool] = React.useState(null);
+    const [saved, setSaved] = React.useState(readSaved);
+    const [libSpace, setLibSpace] = React.useState('glossary');
+    const routeRef = React.useRef(route);
+    const pending = React.useRef(scrollPos[route] || 0);
+    const restoring = React.useRef(false);
+    const go = (r) => {
+      scrollPos[routeRef.current] = window.scrollY; saveScroll();
+      pending.current = 0;
+      try { history.pushState({ route: r }, '', '#/' + r); } catch (e) {}
+      if (r === routeRef.current) { instant(0); return; }
+      setRoute(r);
+    };
+    const openTool = (id) => { setTool(id); go('tools'); };
+    const navTo = (r) => { if (r === 'tools') setTool(null); if (r === 'library') setLibSpace('glossary'); go(r); };
+    window.PL_NAV = navTo;
+    window.PL_ROUTE = route;
+    React.useEffect(() => {
+      try { if (location.hash !== '#/' + routeRef.current) history.replaceState({ route: routeRef.current }, '', '#/' + routeRef.current); } catch (e) {}
+      const onPop = () => {
+        const r = readHash(); if (!r) return;
+        scrollPos[routeRef.current] = window.scrollY; saveScroll();
+        pending.current = scrollPos[r] || 0;
+        if (r === routeRef.current) { instant(pending.current); return; }
+        setRoute(r);
+      };
+      let t;
+      const onScroll = () => { if (restoring.current) return; scrollPos[routeRef.current] = window.scrollY; clearTimeout(t); t = setTimeout(saveScroll, 200); };
+      window.addEventListener('popstate', onPop);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      return () => { window.removeEventListener('popstate', onPop); window.removeEventListener('scroll', onScroll); };
+    }, []);
+    React.useEffect(() => {
+      routeRef.current = route;
+      setMeta(route);
+      window.PL_PV = (window.PL_PV || 0) + 1;
+      const target = pending.current; let tries = 0, raf;
+      restoring.current = true;
+      const step = () => {
+        instant(target);
+        if ((Math.abs(window.scrollY - target) > 2 || tries < 3) && tries++ < 90) raf = requestAnimationFrame(step);
+        else { restoring.current = false; scrollPos[route] = window.scrollY; }
+      };
+      step();
+      return () => { cancelAnimationFrame(raf); restoring.current = false; };
+    }, [route]);
+    const effectiveTheme = saved || routeTheme(route);
+    const toggleTheme = (to) => {
+      try { localStorage.setItem(THEME_KEY, to); } catch (e) {}
+      window.plTrack('theme_toggle', { to, location: route + '-header', label: to === 'light' ? 'Switch to light mode' : 'Switch to dark mode' });
+      pending.current = window.scrollY;
+      setSaved(to);
+    };
+    React.useEffect(() => { document.documentElement.setAttribute('data-theme', effectiveTheme); }, [effectiveTheme]);
+    React.useEffect(() => { if (saved) { const y = pending.current; requestAnimationFrame(() => instant(y)); } }, [saved]);
+    return (
+      <LightboxProvider>
+        <PLHeader active={route} onNav={navTo} theme={effectiveTheme} onToggleTheme={toggleTheme} />
+        <main key={route + effectiveTheme}>
+          {route === 'home' && <Landing onNav={navTo} onTool={openTool} theme={effectiveTheme} />}
+          {route === 'about' && <AboutPage onNav={navTo} />}
+          {route === 'table' && <TablePage />}
+          {route === 'sprint' && <SprintPage />}
+          {route === 'tools' && <ToolsPage tool={tool} onOpen={openTool} onBack={() => setTool(null)} onNav={navTo} />}
+          {route === 'navigator' && <NavigatorClaim />}
+          {route === 'hub' && <PLHub theme={effectiveTheme} onNav={navTo} onSpace={(s) => { setLibSpace(s); go('library'); }} />}
+          {route === 'library' && <Library initialSpace={libSpace} onNewsletter={() => go('kit')} onNav={navTo} />}
+          {route === 'kit' && <KitLanding onNav={navTo} />}
+        </main>
+        {(route === 'library' || route === 'hub') && <SubscribeBand />}
+        <PLFooter onNav={navTo} />
+        {route === 'home' && <StickyCTA onCTA={() => navTo('navigator')} route={route} />}
+      </LightboxProvider>
+    );
+  };
+
+  ReactDOM.createRoot(document.getElementById('app')).render(<App />);
+</script>
+</body>
+</html>
