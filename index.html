@@ -239,7 +239,7 @@
     const navTo = (r) => { if (r === 'tools') setTool(null); if (r === 'library') setLibSpace('glossary'); go(r); };
     window.PL_NAV = navTo;
     window.PL_ROUTE = route;
-    // GA4 history-based page views are off (they double-counted Substack on the shared stream), so routes send their own.
+    // GA4 does not count hash-only route changes (#/about), so each route change sends its own page_view.
     const firstView = React.useRef(true);
     React.useEffect(() => { if (firstView.current) { firstView.current = false; return; } setTimeout(() => { if (window.gtag) window.gtag('event', 'page_view', { page_location: location.href, page_title: document.title }); }, 0); }, [route]);
     React.useEffect(() => {
