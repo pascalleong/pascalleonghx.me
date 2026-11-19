@@ -8,7 +8,7 @@ window.PL_LINKS = {
   issue3: "https://pascalleonghx.substack.com/p/gpt6-astra-foundation-debt-signal-collapse-entry-level-jobs-2026",
   instagram: "https://www.instagram.com/pascalleonghx",
   apply: "https://tally.so/r/LDD7p2",
-  navigatorDuplicate: "#navigator-link",
+  navigatorDuplicate: "https://pascalleonghx.notion.site/The-Unit-Navigator-v4-updated-Sept-18-2f5d22b726a980669066d03fa223f161",
   terms: "terms.html", refund: "refund.html", privacy: "privacy.html", contact: "contact.html",
   ga4Id: "G-PV2KYCSX74",
   clarityId: "CLARITY_ID_HERE"

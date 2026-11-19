@@ -1,0 +1,305 @@
+<!doctype html>
+<!-- @dsCard group="UI Kit — Personal Brand" name="Personal brand site — UI kit" subtitle="Hero, intake form, Linktree hub — click-thru prototype" viewport="1320x900" -->
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Pascal Leong | Links</title>
+<meta name="description" content="Every free tool, the newsletter and the ways to work with Pascal Leong, in one place.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  html, body { margin: 0; padding: 0; min-height: 100vh; scroll-behavior: smooth; }
+  #app { min-height: 100vh; display: flex; flex-direction: column; }
+  #app > main { flex: 1; }
+  [data-theme="light"] body { background: var(--bg-canvas); }
+
+  /* Hero "chosen one" — cinematic motion */
+  @keyframes pl-rise-float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(-12px); }
+  }
+  @keyframes pl-beam-breathe {
+    0%, 100% { opacity: 0.42; }
+    50%      { opacity: 0.82; }
+  }
+  @keyframes pl-ground-ring {
+    0%   { transform: translateX(-50%) scale(0.35); opacity: 0.55; }
+    100% { transform: translateX(-50%) scale(1.7);  opacity: 0; }
+  }
+  @keyframes pl-halo-breathe {
+    0%, 100% { opacity: 0.40; transform: translate(-50%, -50%) scale(1); }
+    50%      { opacity: 0.85; transform: translate(-50%, -50%) scale(1.1); }
+  }
+  /* Hero 3D render — slow cinematic push-in so the still feels alive */
+  @keyframes pl-hero-zoom {
+    0%, 100% { transform: scale(1.02); }
+    50%      { transform: scale(1.07); }
+  }
+  @media (max-width: 767px) {
+    html, body { overflow-x: clip; }
+    [style*="grid-template-columns"] { grid-template-columns: minmax(0, 1fr) !important; }
+    main section { padding-left: 20px !important; padding-right: 20px !important; }
+    main button, main a[href] { min-height: 44px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pl-rise-float, .pl-beam, .pl-ground-ring, .pl-halo, .pl-hero-zoom { animation: none !important; }
+  }
+
+  /* MOBILE CONTRACT */
+  /* Every current and future component inherits these. A component opts out of the grid collapse with data-mobile-layout. */
+  html, body { overflow-x: clip; }
+  img, picture, video { max-width: 100%; height: auto; }
+  main section[style*="padding: 120px"] { padding-top: clamp(64px, 10vw, 120px) !important; }
+  @media (max-width: 767px) {
+    body { font-size: 16px; }
+    main :is(p, li, blockquote, dd, figcaption):is([style*="font-size: 12"], [style*="font-size: 13"], [style*="font-size: 14"], [style*="font-size: 15"]) { font-size: 16px !important; }
+    main h1:not([style*="clamp"]) { font-size: clamp(32px, 8.5vw, 44px) !important; }
+    main h2:not([style*="clamp"]) { font-size: clamp(26px, 7vw, 36px) !important; }
+    main h3:not([style*="clamp"]) { font-size: clamp(18px, 4.8vw, 22px) !important; }
+    a[href], main a, button, [role="button"], select, summary, input:not([type="range"]):not([type="checkbox"]):not([type="radio"]) { min-height: 44px; }
+    body.pl-has-sticky #app { padding-bottom: calc(var(--pl-sticky-h, 90px) + 16px); }
+  }
+  @media (max-width: 639px) {
+    [style*="grid-template-columns: repeat(3"]:not([data-mobile-layout]), [style*="grid-template-columns: repeat(4"]:not([data-mobile-layout]), [style*="grid-template-columns: repeat(5"]:not([data-mobile-layout]), [style*="grid-template-columns: repeat(6"]:not([data-mobile-layout]) { grid-template-columns: minmax(0, 1fr) !important; }
+  }
+</style>
+<link rel="canonical" href="https://pascalleonghx.me/hub.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Pascal Leong","url":"https://pascalleonghx.me"}</script>
+</head>
+<body>
+<script>window.PL_INITIAL_ROUTE="hub";</script>
+<div id="app"><header style="position: sticky; top: 0px; z-index: 50; background: var(--slate-950-a40); backdrop-filter: blur(16px) saturate(180%); border-bottom: 1px solid transparent; transition: background var(--dur-base), border-color var(--dur-base);"><div style="max-width: 1200px; margin: 0px auto; padding: 16px 32px; display: flex; align-items: center; gap: 16px; transition: padding var(--dur-base);"><a href="#/home" style="display: flex; align-items: center; cursor: pointer; background: none;"><span style="display: inline-flex; align-items: flex-start; color: var(--accent); line-height: 1; user-select: none; padding-top: 7px;"><span class="wordmark" style="font-family: var(--font-display); font-weight: 700; font-size: 30px; letter-spacing: var(--ls-wordmark); text-transform: uppercase; line-height: 1; white-space: nowrap; margin-right: 3px;">Pascal Leong</span><svg width="15" height="15" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="" style="display: block; flex-shrink: 0; margin-top: -7px;"><circle cx="24" cy="24" r="21.5" stroke="currentColor" stroke-width="2.2" fill="none"></circle><g transform="rotate(35, 24, 24)"><path d="M24 6L21 24L27 24Z" fill="currentColor"></path><path d="M24 42L21 24L27 24Z" fill="currentColor" fill-opacity="0.4"></path></g></svg></span></a><div style="flex: 1 1 0%;"></div><nav aria-label="Main" style="display: flex; gap: 28px; align-items: center;"><div style="position: relative;"><button type="button" aria-expanded="false" aria-haspopup="true" style="background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0px; font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0.02em; color: var(--fg-muted);">Free<iconify-icon icon="ph:caret-down-bold" width="11" style="transform: none; transition: transform var(--dur-base);"></iconify-icon></button></div><a href="#/kit" style="cursor: pointer; font-size: 13px; font-weight: 500; letter-spacing: 0.02em; color: var(--fg-muted); background: none; display: inline-flex; align-items: center; min-height: 44px;">Newsletter</a><div style="position: relative;"><button type="button" aria-expanded="false" aria-haspopup="true" style="background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0px; font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0.02em; color: var(--fg-muted);">Programs<iconify-icon icon="ph:caret-down-bold" width="11" style="transform: none; transition: transform var(--dur-base);"></iconify-icon></button></div><a href="#/about" style="cursor: pointer; font-size: 13px; font-weight: 500; letter-spacing: 0.02em; color: var(--fg-muted); background: none; display: inline-flex; align-items: center; min-height: 44px;">About</a></nav><button type="button" data-no-track="" aria-label="Switch to light mode" style="background: none; border: 1px solid var(--border); border-radius: var(--radius-md); width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: var(--fg); flex-shrink: 0;"><iconify-icon icon="ph:sun-bold" width="18"></iconify-icon></button><button data-cta="" type="button" style="font-family: var(--font-body); font-weight: 700; font-size: 13px; letter-spacing: -0.01em; padding: 11px 18px; border-radius: var(--radius-md); border-width: 1px; border-style: solid; border-color: var(--accent); border-image: none; cursor: pointer; line-height: 1; display: inline-flex; align-items: center; justify-content: center; gap: 10px; white-space: nowrap; text-decoration: none; box-sizing: border-box; min-height: 44px; transition: background var(--dur-fast) var(--ease-snap), box-shadow var(--dur-base) var(--ease-snap), transform 80ms var(--ease-snap), color var(--dur-fast), border-color var(--dur-fast); background: var(--accent); color: var(--accent-on);">Apply For 1-on-1 With Pascal<iconify-icon icon="ph:arrow-right-bold" width="18" style="transform: none; transition: transform var(--dur-base) var(--ease-snap);"></iconify-icon></button></div></header><main><section style="max-width: 520px; margin: 0px auto; padding: 72px 32px 0px;"><div class="fade-up is-visible" style="--reveal-delay: 0ms;"><div style="text-align: center; margin-bottom: 44px;"><span class="spin-slow icon-glow" style="display: inline-flex; margin: 0px auto 22px;"><iconify-icon icon="ph:compass-thin" width="72" style="color: var(--accent);"></iconify-icon></span><div style="display: flex; justify-content: center; margin-bottom: 12px;"><span class="wordmark" style="font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: var(--ls-wordmark); text-transform: uppercase; color: var(--accent); line-height: 1; white-space: nowrap; display: block; user-select: none;">Pascal Leong</span></div><div style="display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.22em; text-transform: uppercase;"><span style="width: 18px; height: 1px; background: currentcolor; opacity: 0.5;"></span>Strategic Architect<span style="width: 18px; height: 1px; background: currentcolor; opacity: 0.5;"></span></div><div style="margin-top: 10px; font-family: var(--font-mono); font-size: 10.5px; color: var(--fg-muted); letter-spacing: 0.18em; text-transform: uppercase;">Building the top 1% of undergrads</div></div></div><div class="fade-up is-visible" style="--reveal-delay: 100ms;"><div style="display: flex; flex-direction: column; gap: 10px;"><a style="display: grid; grid-template-columns: 30px 30px 1fr 18px; gap: 14px; align-items: center; background-image: none; background-position-x: ; background-position-y: ; background-size: ; background-repeat: ; background-attachment: ; background-origin: ; background-clip: ; background-color: ; border: 1px solid var(--accent); border-radius: var(--radius-md); padding: 17px 20px; color: var(--accent-on); text-decoration: none; transition: all var(--dur-base) var(--ease-snap); box-shadow: var(--glow-mint);"><span style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-on); letter-spacing: 0.14em; opacity: 0.7;">01</span><iconify-icon icon="ph:seal-check-bold" width="22" style="color: var(--accent-on);"></iconify-icon><span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 700; font-size: 14.5px; letter-spacing: 0.02em;">Apply For 1-on-1 With Pascal</span><span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-on); letter-spacing: 0.04em; opacity: 0.85;">The Architect's Table · 8 weeks</span></span><iconify-icon icon="ph:arrow-right-bold" width="17" style="color: var(--accent-on); transform: none; transition: transform var(--dur-base);"></iconify-icon></a><a style="display: grid; grid-template-columns: 30px 30px 1fr 18px; gap: 14px; align-items: center; background: none transparent; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 17px 20px; color: var(--fg); text-decoration: none; transition: all var(--dur-base) var(--ease-snap); box-shadow: none;"><span style="font-family: var(--font-mono); font-size: 10px; color: var(--fg-muted); letter-spacing: 0.14em; opacity: 0.7;">02</span><iconify-icon icon="ph:compass-bold" width="22" style="color: var(--accent);"></iconify-icon><span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 700; font-size: 14.5px; letter-spacing: 0.02em;">Get The Unit Navigator Free</span><span style="font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); letter-spacing: 0.04em; opacity: 0.85;">Free duplicable Notion system</span></span><iconify-icon icon="ph:arrow-right-bold" width="17" style="color: var(--accent); transform: none; transition: transform var(--dur-base);"></iconify-icon></a><a style="display: grid; grid-template-columns: 30px 30px 1fr 18px; gap: 14px; align-items: center; background: none transparent; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 17px 20px; color: var(--fg); text-decoration: none; transition: all var(--dur-base) var(--ease-snap); box-shadow: none;"><span style="font-family: var(--font-mono); font-size: 10px; color: var(--fg-muted); letter-spacing: 0.14em; opacity: 0.7;">03</span><iconify-icon icon="ph:envelope-simple-bold" width="22" style="color: var(--accent);"></iconify-icon><span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 700; font-size: 14.5px; letter-spacing: 0.02em;">Project 12, the Tuesday newsletter</span><span style="font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); letter-spacing: 0.04em; opacity: 0.85;">3 updates, 2 mental models, 1 move</span></span><iconify-icon icon="ph:arrow-right-bold" width="17" style="color: var(--accent); transform: none; transition: transform var(--dur-base);"></iconify-icon></a><a style="display: grid; grid-template-columns: 30px 30px 1fr 18px; gap: 14px; align-items: center; background: none transparent; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 17px 20px; color: var(--fg); text-decoration: none; transition: all var(--dur-base) var(--ease-snap); box-shadow: none;"><span style="font-family: var(--font-mono); font-size: 10px; color: var(--fg-muted); letter-spacing: 0.14em; opacity: 0.7;">04</span><iconify-icon icon="ph:users-three-bold" width="22" style="color: var(--accent);"></iconify-icon><span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 700; font-size: 14.5px; letter-spacing: 0.02em;">Join The Sprint Waitlist</span><span style="font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); letter-spacing: 0.04em; opacity: 0.85;">The 28-Day Career Moat Sprint</span></span><iconify-icon icon="ph:arrow-right-bold" width="17" style="color: var(--accent); transform: none; transition: transform var(--dur-base);"></iconify-icon></a><a style="display: grid; grid-template-columns: 30px 30px 1fr 18px; gap: 14px; align-items: center; background: none transparent; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 17px 20px; color: var(--fg); text-decoration: none; transition: all var(--dur-base) var(--ease-snap); box-shadow: none;"><span style="font-family: var(--font-mono); font-size: 10px; color: var(--fg-muted); letter-spacing: 0.14em; opacity: 0.7;">05</span><iconify-icon icon="ph:book-open-text-bold" width="22" style="color: var(--accent);"></iconify-icon><span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 700; font-size: 14.5px; letter-spacing: 0.02em;">Library</span><span style="font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); letter-spacing: 0.04em; opacity: 0.85;">Ground Truth, long-form</span></span><iconify-icon icon="ph:arrow-right-bold" width="17" style="color: var(--accent); transform: none; transition: transform var(--dur-base);"></iconify-icon></a></div></div></section></main><section style="padding: 48px 32px 0px; max-width: 1000px; margin: 0px auto;"><div class="fade-up " style="--reveal-delay: 0ms;"><div style="border: 1px solid var(--border); border-radius: var(--radius-xl); padding: clamp(28px, 5vw, 48px); display: grid; grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr); gap: 36px; align-items: center;"><div><div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px;">Every Tuesday</div><h2 style="font-family: var(--font-display); font-weight: 800; font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.03em; line-height: 1.12; margin: 0px; color: var(--fg); text-wrap: balance;">Know what changed for graduates this week, and the 1 move to make.</h2></div><form action="https://pascalleonghx.substack.com/subscribe" method="post" style="display: flex; gap: 10px; flex-wrap: wrap; max-width: 520px;"><input type="email" required="" placeholder="Your best email" aria-label="Your best email" value="" style="flex: 1 1 220px; min-width: 0px; min-height: 48px; box-sizing: border-box; background: var(--bg-input); color: var(--fg); border: 1px solid var(--fg-subtle); border-radius: var(--radius-md); padding: 14px 16px; font-size: 15px; font-family: var(--font-body);"><button data-cta="" type="submit" style="font-family: var(--font-body); font-weight: 700; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; border-radius: var(--radius-md); border-width: 1px; border-style: solid; border-color: var(--accent); border-image: none; cursor: pointer; line-height: 1; display: inline-flex; align-items: center; justify-content: center; gap: 10px; white-space: nowrap; text-decoration: none; box-sizing: border-box; min-height: 44px; transition: background var(--dur-fast) var(--ease-snap), box-shadow var(--dur-base) var(--ease-snap), transform 80ms var(--ease-snap), color var(--dur-fast), border-color var(--dur-fast); background: var(--accent); color: var(--accent-on);">Get The Tuesday Issue Free<iconify-icon icon="ph:arrow-right-bold" width="18" style="transform: none; transition: transform var(--dur-base) var(--ease-snap);"></iconify-icon></button></form></div></div></section><footer style="border-top: 1px solid var(--border); padding: 48px 32px 36px; margin-top: 140px;"><div style="max-width: 1200px; margin: 0px auto; display: flex; align-items: center; gap: 18px; flex-wrap: wrap;"><span style="display: inline-flex; align-items: flex-start; color: var(--accent); line-height: 1; user-select: none; padding-top: 5px;"><span class="wordmark" style="font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: var(--ls-wordmark); text-transform: uppercase; line-height: 1; white-space: nowrap; margin-right: 2px;">Pascal Leong</span><svg width="11" height="11" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="" style="display: block; flex-shrink: 0; margin-top: -5px;"><circle cx="24" cy="24" r="21.5" stroke="currentColor" stroke-width="2.2" fill="none"></circle><g transform="rotate(35, 24, 24)"><path d="M24 6L21 24L27 24Z" fill="currentColor"></path><path d="M24 42L21 24L27 24Z" fill="currentColor" fill-opacity="0.4"></path></g></svg></span><span style="flex: 1 1 0%;"></span><span style="display: flex; gap: 4px 22px; flex-wrap: wrap;"><a href="#/about" style="font-size: 12.5px; color: var(--fg-muted); cursor: pointer; display: inline-flex; align-items: center; min-height: 44px;">About</a><a href="terms.html" style="font-size: 12.5px; color: var(--fg-muted); cursor: pointer; display: inline-flex; align-items: center; min-height: 44px;">Terms</a><a href="refund.html" style="font-size: 12.5px; color: var(--fg-muted); cursor: pointer; display: inline-flex; align-items: center; min-height: 44px;">Refund Policy</a><a href="privacy.html" style="font-size: 12.5px; color: var(--fg-muted); cursor: pointer; display: inline-flex; align-items: center; min-height: 44px;">Privacy</a><a href="contact.html" style="font-size: 12.5px; color: var(--fg-muted); cursor: pointer; display: inline-flex; align-items: center; min-height: 44px;">Contact</a><a href="https://www.instagram.com/pascalleonghx" target="_blank" rel="noopener" style="font-size: 12.5px; color: var(--fg-muted); cursor: pointer; display: inline-flex; align-items: center; min-height: 44px;">Instagram <iconify-icon icon="ph:arrow-up-right-bold" width="11" style="margin-left: 4px;"></iconify-icon></a></span></div></footer></div>
+
+<script>window.plTrack=function(n,p){try{if(window.gtag)window.gtag("event",n,p||{})}catch(e){}};</script>
+<script type="text/babel" src="Interactions.jsx"></script>
+<script type="text/babel" src="Primitives.jsx"></script>
+<script type="text/babel" src="Header.jsx"></script>
+<script type="text/babel" src="Doors.jsx"></script>
+<script type="text/babel" src="Problem.jsx"></script>
+<script type="text/babel" src="HomeParts.jsx"></script>
+<script type="text/babel" src="Hero.jsx"></script>
+<script type="text/babel" src="Sections.jsx"></script>
+<script type="text/babel" src="Extras.jsx"></script>
+<script type="text/babel" src="Testimonials.jsx"></script>
+<script type="text/babel" src="Newsletter.jsx"></script>
+<script type="text/babel" src="WhereYourWeekGoes.jsx"></script>
+<script type="text/babel" src="Claim.jsx"></script>
+<script type="text/babel" src="Hub.jsx"></script>
+<script type="text/babel" src="EssayContent.jsx"></script>
+<script type="text/babel" src="EssayNew.jsx"></script>
+<script type="text/babel" src="Glossary.jsx"></script>
+<script type="text/babel" src="MarkdownReader.jsx"></script>
+<script type="text/babel" src="Library.jsx"></script>
+<script type="text/babel" src="LibrarySpaces.jsx"></script>
+<script type="text/babel" src="KitLanding.jsx"></script>
+<script src="ilo-data.js"></script>
+<script type="text/babel" src="ToolKit.jsx"></script>
+<script type="text/babel" src="ClockTool.jsx"></script>
+<script type="text/babel" src="ScorecardTool.jsx"></script>
+<script type="text/babel" src="DegreeTool.jsx"></script>
+<script type="text/babel" src="Tools.jsx"></script>
+<script type="text/babel" src="Masterplan.jsx"></script>
+<script type="text/babel" src="Mechanism.jsx"></script>
+<script type="text/babel" src="About.jsx"></script>
+<script type="text/babel" src="Table.jsx"></script>
+<script type="text/babel" src="Sprint.jsx"></script>
+
+<script type="text/babel">
+  const toHeroForm = () => {
+    const el = document.getElementById('hero-form');
+    if (!el) return;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 140, behavior: 'smooth' });
+    const i = el.querySelector('input'); if (i) setTimeout(() => i.focus({ preventScroll: true }), 500);
+  };
+  const Landing = ({ onNav }) => (
+    <>
+      <PLHero />
+      <HomeObjections />
+      <ProblemSection />
+      <MechanismSection />
+      <WorkWithMe onNav={onNav} />
+      <About onMore={() => onNav('about')} />
+      <FAQ />
+      <HomeClosing />
+    </>
+  );
+  (function () {
+    const L = window.PL_LINKS || {};
+    const id = L.ga4Id;
+    if (id && id !== 'G-XXXXXXXXXX') {
+      const s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id; document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date()); window.gtag('config', id);
+    }
+    const cid = L.clarityId;
+    if (cid && cid !== 'CLARITY_ID_HERE') {
+      (function (c, l, a, r, i, t, y) { c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); }; t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i; y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y); })(window, document, 'clarity', 'script', cid);
+    }
+
+    const slug = (t) => (t || '').toLowerCase().replace(/[^a-z0-9\s-]/g, ' ').trim().split(/\s+/).slice(0, 3).join('-');
+    const sectionOf = (el) => {
+      const tagged = el.closest('[data-section]'); if (tagged) return tagged.getAttribute('data-section');
+      if (el.closest('[data-sticky-cta]')) return 'sticky';
+      if (el.closest('header')) return 'header';
+      if (el.closest('footer')) return 'footer';
+      const sec = el.closest('section');
+      if (!sec) return 'page';
+      if (sec.id) return sec.id;
+      if (sec.querySelector('h1')) return 'hero';
+      const eb = sec.querySelector('[data-eyebrow]'); if (eb && slug(eb.textContent)) return slug(eb.textContent);
+      const h = sec.querySelector('h2,h3'); if (h && slug(h.textContent)) return slug(h.textContent);
+      return 'section-' + (Array.prototype.indexOf.call(document.querySelectorAll('main section'), sec) + 1);
+    };
+    window.plLoc = (el) => (window.PL_ROUTE || 'home') + '-' + (el ? sectionOf(el) : 'page');
+    const withSrc = (a) => {
+      try { const u = new URL(a.getAttribute('href'), location.href); u.searchParams.set('src', window.plLoc(a)); a.setAttribute('href', u.toString()); } catch (e) {}
+    };
+    const tagTally = () => document.querySelectorAll('#app a[href*="tally.so"]').forEach(withSrc);
+    const withUtm = (a) => {
+      try { const u = new URL(a.getAttribute('href'), location.href); if (!/substack\.com$/.test(u.host)) return; u.searchParams.set('utm_source', 'pascalleonghx.me'); u.searchParams.set('utm_medium', 'referral'); u.searchParams.set('utm_campaign', 'newsletter'); u.searchParams.set('utm_content', window.plLoc(a)); a.setAttribute('href', u.toString()); } catch (e) {}
+    };
+    const tagSubstack = () => document.querySelectorAll('a[href*="substack.com"]').forEach(withUtm);
+    window.plTagTally = tagTally;
+    new MutationObserver(() => { clearTimeout(window.__plTallyT); window.__plTallyT = setTimeout(() => { tagTally(); tagSubstack(); }, 50); }).observe(document.getElementById('app'), { childList: true, subtree: true });
+
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest && e.target.closest('a,button'); if (!el) return;
+      if (el.closest('[data-no-track]') || el.hasAttribute('aria-expanded')) return;
+      const label = ((el.getAttribute('aria-label') || el.textContent || '').trim().replace(/\s+/g, ' ')).slice(0, 80);
+      const p = { location: window.plLoc(el), label };
+      const href = el.getAttribute('href') || '';
+      if (/tally\.so/.test(href)) { withSrc(el); window.plTrack('apply_click', p); return; }
+      if (/^Apply\b/.test(label)) { window.plTrack('apply_click', p); return; }
+      if (/substack\.com/.test(href)) { withUtm(el); window.plTrack('substack_click', p); return; }
+      if (/^https?:/.test(href)) {
+        let host = ''; try { host = new URL(href).host; } catch (_) {}
+        if (host && host !== location.host) { window.plTrack('outbound_click', { ...p, host }); return; }
+      }
+      if (el.closest('header') || el.closest('footer')) { window.plTrack('nav_click', p); return; }
+      if (el.type === 'submit') return;
+      if (el.closest('[data-calc]')) { window.plTrack('calculator_cta_click', p); return; }
+      if (el.hasAttribute('data-cta') || el.tagName === 'A') window.plTrack('cta_click', p);
+    }, true);
+  })();
+
+  const ROUTE_META = {
+    home: ['Pascal Leong | Building the Top 1% of Undergrads', 'For 2nd and 3rd year undergrads in India, Malaysia and the US: the free Unit Navigator prices every class hour of your degree and gives a take, audit or skip call on every unit.'],
+    about: ['About Pascal Leong | Strategic Architect', 'Monash graduate in Finance and Digital Marketing. Why Pascal built Degree Arbitrage and the Career Moat, and his record.'],
+    table: ["The Architect's Table | 1-on-1 With Pascal Leong", '8 weeks of 1-on-1 work on your own degree, then 90 days of follow-up. Founding round open: 80% off, 3 seats per round.'],
+    sprint: ['The 28-Day Career Moat Sprint | Pascal Leong', 'The live cohort: 4 weeks building your Career Moat with Pascal and students on the same path. Join the waitlist.'],
+    tools: ['Free Career Tools | Pascal Leong', 'Free calculators and diagnostics for your degree: the AI Displacement Clock and the Career Moat Scorecard.'],
+    navigator: ['The Unit Navigator (Free) | Pascal Leong', 'The 3-Phase Syllabus Audit in one free Notion page. Price every class hour and decide which units to take, audit or skip.'],
+    library: ['The Library: Dictionary, Prompts, Insights | Pascal Leong', 'Every term, prompt and Tuesday issue for getting full value from your degree. Free.'],
+    kit: ['The Tuesday Issue | Pascal Leong', 'One short issue every Tuesday: 3 education and AI insights, 2 mental models, 1 execution framework.'],
+    hub: ['Pascal Leong | Links', 'Every free tool, the newsletter and the ways to work with Pascal Leong, in one place.'],
+  };
+  const setMeta = (r) => {
+    const m = ROUTE_META[r] || ROUTE_META.home;
+    document.title = m[0];
+    let d = document.querySelector('meta[name="description"]'); if (!d) { d = document.createElement('meta'); d.name = 'description'; document.head.appendChild(d); } d.content = m[1];
+    const c = document.querySelector('link[rel="canonical"]'); if (c) c.href = 'https://pascalleonghx.me/' + (r === 'home' ? '' : r + '.html');
+  };
+  const ROUTES = ['home', 'about', 'table', 'sprint', 'tools', 'navigator', 'library', 'kit', 'hub'];
+  const ROUTE_THEME = { home: 'dark', about: 'dark', table: 'dark', sprint: 'dark', tools: 'dark', navigator: 'dark', hub: 'dark', library: 'light', kit: 'light' };
+  const THEME_KEY = 'pl-theme', SCROLL_KEY = 'pl-scroll';
+  const readHash = () => { const m = /^#\/([a-z]+)/.exec(location.hash || ''); return m ? (ROUTES.includes(m[1]) ? m[1] : 'home') : null; };
+  const readSaved = () => { try { const v = localStorage.getItem(THEME_KEY); return v === 'light' || v === 'dark' ? v : null; } catch (e) { return null; } };
+  const routeTheme = (r) => ROUTE_THEME[r] || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  const scrollPos = (() => { try { return JSON.parse(sessionStorage.getItem(SCROLL_KEY) || '{}') || {}; } catch (e) { return {}; } })();
+  const saveScroll = () => { try { sessionStorage.setItem(SCROLL_KEY, JSON.stringify(scrollPos)); } catch (e) {} };
+  try { history.scrollRestoration = 'manual'; } catch (e) {}
+  const instant = (y) => window.scrollTo({ top: y, left: 0, behavior: 'instant' });
+
+  const App = () => {
+    const [route, setRoute] = React.useState(() => readHash() || window.PL_INITIAL_ROUTE || 'home');
+    const [tool, setTool] = React.useState(null);
+    const [saved, setSaved] = React.useState(readSaved);
+    const [libSpace, setLibSpace] = React.useState('glossary');
+    const routeRef = React.useRef(route);
+    const pending = React.useRef(scrollPos[route] || 0);
+    const restoring = React.useRef(false);
+    const go = (r) => {
+      scrollPos[routeRef.current] = window.scrollY; saveScroll();
+      pending.current = 0;
+      try { history.pushState({ route: r }, '', '#/' + r); } catch (e) {}
+      if (r === routeRef.current) { instant(0); return; }
+      setRoute(r);
+    };
+    const openTool = (id) => { setTool(id); go('tools'); };
+    const navTo = (r) => { if (r === 'tools') setTool(null); if (r === 'library') setLibSpace('glossary'); go(r); };
+    window.PL_NAV = navTo;
+    window.PL_ROUTE = route;
+    // GA4 history-based page views are off (they double-counted Substack on the shared stream), so routes send their own.
+    const firstView = React.useRef(true);
+    React.useEffect(() => { if (firstView.current) { firstView.current = false; return; } setTimeout(() => { if (window.gtag) window.gtag('event', 'page_view', { page_location: location.href, page_title: document.title }); }, 0); }, [route]);
+    React.useEffect(() => {
+      try { if (location.hash !== '#/' + routeRef.current) history.replaceState({ route: routeRef.current }, '', '#/' + routeRef.current); } catch (e) {}
+      const onPop = () => {
+        const r = readHash(); if (!r) return;
+        scrollPos[routeRef.current] = window.scrollY; saveScroll();
+        pending.current = scrollPos[r] || 0;
+        if (r === routeRef.current) { instant(pending.current); return; }
+        setRoute(r);
+      };
+      let t;
+      const onScroll = () => { if (restoring.current) return; scrollPos[routeRef.current] = window.scrollY; clearTimeout(t); t = setTimeout(saveScroll, 200); };
+      window.addEventListener('popstate', onPop);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      return () => { window.removeEventListener('popstate', onPop); window.removeEventListener('scroll', onScroll); };
+    }, []);
+    React.useEffect(() => {
+      routeRef.current = route;
+      setMeta(route);
+      window.PL_PV = (window.PL_PV || 0) + 1;
+      const target = pending.current; let tries = 0, raf;
+      restoring.current = true;
+      const step = () => {
+        instant(target);
+        if ((Math.abs(window.scrollY - target) > 2 || tries < 3) && tries++ < 90) raf = requestAnimationFrame(step);
+        else { restoring.current = false; scrollPos[route] = window.scrollY; }
+      };
+      step();
+      return () => { cancelAnimationFrame(raf); restoring.current = false; };
+    }, [route]);
+    const effectiveTheme = saved || routeTheme(route);
+    const toggleTheme = (to) => {
+      try { localStorage.setItem(THEME_KEY, to); } catch (e) {}
+      window.plTrack('theme_toggle', { to, location: route + '-header', label: to === 'light' ? 'Switch to light mode' : 'Switch to dark mode' });
+      pending.current = window.scrollY;
+      setSaved(to);
+    };
+    React.useEffect(() => { document.documentElement.setAttribute('data-theme', effectiveTheme); }, [effectiveTheme]);
+    React.useEffect(() => { if (saved) { const y = pending.current; requestAnimationFrame(() => instant(y)); } }, [saved]);
+    return (
+      <LightboxProvider>
+        <PLHeader active={route} onNav={navTo} theme={effectiveTheme} onToggleTheme={toggleTheme} />
+        <main key={route + effectiveTheme}>
+          {route === 'home' && <Landing onNav={navTo} onTool={openTool} theme={effectiveTheme} />}
+          {route === 'about' && <AboutPage onNav={navTo} />}
+          {route === 'table' && <TablePage />}
+          {route === 'sprint' && <SprintPage />}
+          {route === 'tools' && <ToolsPage tool={tool} onOpen={openTool} onBack={() => setTool(null)} onNav={navTo} />}
+          {route === 'navigator' && <NavigatorClaim />}
+          {route === 'hub' && <PLHub theme={effectiveTheme} onNav={navTo} onSpace={(s) => { setLibSpace(s); go('library'); }} />}
+          {route === 'library' && <Library initialSpace={libSpace} onNewsletter={() => go('kit')} onNav={navTo} />}
+          {route === 'kit' && <KitLanding onNav={navTo} />}
+        </main>
+        {(route === 'library' || route === 'hub') && <SubscribeBand />}
+        <PLFooter onNav={navTo} />
+        {route === 'home' && <StickyCTA onCTA={() => navTo('navigator')} route={route} />}
+      </LightboxProvider>
+    );
+  };
+
+  ReactDOM.createRoot(document.getElementById('app')).render(<App />);
+</script>
+</body>
+</html>

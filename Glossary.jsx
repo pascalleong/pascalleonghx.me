@@ -147,8 +147,8 @@ const GLOSSARY = glNorm(GLOSSARY_SRC).split(/^### /m).filter((x) => x.trim()).ma
   return { term, def, id: glKebab(term) };
 }).sort((a, b) => a.term.replace(/^The /, '').localeCompare(b.term.replace(/^The /, ''), 'en', { numeric: true }));
 
-const glSetId = 'https://pascalleonghx.me/#/library';
-const glLink = (id) => location.origin + location.pathname + '#/library?term=' + id;
+const glSetId = 'https://pascalleonghx.me/library.html';
+const glLink = (id) => 'https://pascalleonghx.me/terms/' + id + '.html';
 const GL_CATS = ['Degree Arbitrage', 'Career Moat', 'Cost and Return', 'Decision Tools', 'AI-era market'];
 const GL_CAT = { 'The 3/10/50 Filter': 'Decision Tools', 'Degree Arbitrage': 'Degree Arbitrage', 'Academic Arbitrage': 'Degree Arbitrage', 'Identity Arbitrage': 'Degree Arbitrage', 'Resource Arbitrage': 'Degree Arbitrage', 'Brand Arbitrage': 'Degree Arbitrage', "Pascal's Degree-Unit Selection Inversion": 'Degree Arbitrage', 'The 4 Hidden Assets': 'Degree Arbitrage', 'Asymmetric ROI': 'Cost and Return', 'Capital Burn Rate': 'Cost and Return', 'Active Semester Burn Rate': 'Cost and Return', 'Hurdle Rate': 'Cost and Return', 'Career Moat': 'Career Moat', 'Meta-Liquidity': 'Career Moat', 'Oral Defense': 'Career Moat', 'Proof of Work System': 'Career Moat', 'Importance Triage': 'Decision Tools', 'Strategic Gratitude': 'Decision Tools', 'High vs Low Liquidity': 'Decision Tools', 'Locked-Door Degrees': 'AI-era market', 'Ground Truth': 'Decision Tools', 'Credential Decay': 'AI-era market', 'Cognitive Sovereignty': 'Career Moat', 'Cognitive Debt Trap': 'AI-era market', 'Ladder Collapse': 'AI-era market', 'Signal Collapse': 'AI-era market', 'AI Orchestrator': 'AI-era market', 'Foundation Debt': 'AI-era market', 'Information Asymmetry': 'Decision Tools' };
 GLOSSARY.forEach((x) => { x.cat = GL_CAT[x.term] || 'Decision Tools'; });
