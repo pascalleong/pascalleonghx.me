@@ -165,7 +165,7 @@
     };
     const tagTally = () => document.querySelectorAll('#app a[href*="tally.so"]').forEach(withSrc);
     const withUtm = (a) => {
-      try { const u = new URL(a.getAttribute('href'), location.href); if (!/substack\.com$/.test(u.host)) return; u.searchParams.set('utm_source', 'pascalleonghx.me'); u.searchParams.set('utm_medium', 'website'); u.searchParams.set('utm_campaign', window.plLoc(a)); a.setAttribute('href', u.toString()); } catch (e) {}
+      try { const u = new URL(a.getAttribute('href'), location.href); if (!/substack\.com$/.test(u.host)) return; u.searchParams.set('utm_source', 'pascalleonghx.me'); u.searchParams.set('utm_medium', 'referral'); u.searchParams.set('utm_campaign', 'newsletter'); u.searchParams.set('utm_content', window.plLoc(a)); a.setAttribute('href', u.toString()); } catch (e) {}
     };
     const tagSubstack = () => document.querySelectorAll('a[href*="substack.com"]').forEach(withUtm);
     window.plTagTally = tagTally;
